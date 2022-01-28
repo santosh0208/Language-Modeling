@@ -33,7 +33,8 @@ getCorpusLength(corpus)
 Parameters: 2D list of strs
 Returns: int
 '''
-def getCorpusLength(corpus):
+def getCorpusLength(corpus): 
+    total_length = sum(len(row) for row in corpus) 
     return
 
 
