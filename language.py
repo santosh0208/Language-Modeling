@@ -35,7 +35,7 @@ Returns: int
 '''
 def getCorpusLength(corpus): 
     total_length = sum(len(row) for row in corpus) 
-    return
+    return total_length 
 
 
 '''
@@ -45,7 +45,12 @@ Parameters: 2D list of strs
 Returns: list of strs
 '''
 def buildVocabulary(corpus):
-    return
+    list=[]
+    for i in corpus:
+        for j in i:
+            if j not in list:
+                list.append(j)
+    return list
 
 
 '''
@@ -55,7 +60,15 @@ Parameters: 2D list of strs
 Returns: dict mapping strs to ints
 '''
 def countUnigrams(corpus):
-    return
+    count_unigrams={}
+    list=[]
+    for i in corpus:
+        for j in i:
+            list.append(j)
+    for k in list:
+        if k not in count_unigrams:
+            count_unigrams[k]=list.count(k)
+    return count_unigrams 
 
 
 '''
@@ -65,7 +78,12 @@ Parameters: 2D list of strs
 Returns: list of strs
 '''
 def getStartWords(corpus):
-    return
+    l=[]
+    for i in corpus:
+        if i[0] not in l:
+            l.append(i[0]) 
+    return l
+ 
 
 
 '''
