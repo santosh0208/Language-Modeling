@@ -202,8 +202,14 @@ Returns: str
 '''
 from random import choices
 def generateTextFromUnigrams(count, words, probs):
-    
-    return
+    l=[]
+    for i in range (count):
+        l.append(choices(words, weights=probs)) #"hello world hello"
+    s="" 
+    for i in l:
+        for j in i:
+            s=s+" " +j 
+    return s
 
 
 '''
