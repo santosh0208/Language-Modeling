@@ -163,7 +163,19 @@ Parameters: dict mapping strs to ints ; dict mapping strs to (dicts mapping strs
 Returns: dict mapping strs to (dicts mapping strs to (lists of values))
 '''
 def buildBigramProbs(unigramCounts, bigramCounts):
-    return
+    d={}     
+    for i in bigramCounts:
+        l=unigramCounts[i]
+        l2=[]
+        l3=[]
+        for j in bigramCounts[i]:
+            l2.append(j)
+            l3.append(bigramCounts[i][j]/l)
+        d1={}
+        d1["words"]=l2
+        d1["probs"]=l3
+        d[i]=d1
+    return d
 
 
 '''
