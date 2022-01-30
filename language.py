@@ -17,7 +17,14 @@ Parameters: str
 Returns: 2D list of strs
 '''
 def loadBook(filename):
-    return
+    l=[]
+    o=open(filename,"r").read()
+    slines=o.split("\n")
+    for i in slines:
+        splitword=i.split(" ")
+        if splitword !=[""]:
+            l.append(splitword)
+    return l 
 
 
 '''
@@ -26,8 +33,9 @@ getCorpusLength(corpus)
 Parameters: 2D list of strs
 Returns: int
 '''
-def getCorpusLength(corpus):
-    return
+def getCorpusLength(corpus): 
+    total_length = sum(len(row) for row in corpus) 
+    return total_length 
 
 
 '''
@@ -37,7 +45,12 @@ Parameters: 2D list of strs
 Returns: list of strs
 '''
 def buildVocabulary(corpus):
-    return
+    list=[]
+    for i in corpus:
+        for j in i:
+            if j not in list:
+                list.append(j)
+    return list
 
 
 '''
@@ -47,7 +60,15 @@ Parameters: 2D list of strs
 Returns: dict mapping strs to ints
 '''
 def countUnigrams(corpus):
-    return
+    count_unigrams={}
+    list=[]
+    for i in corpus:
+        for j in i:
+            list.append(j)
+    for k in list:
+        if k not in count_unigrams:
+            count_unigrams[k]=list.count(k)
+    return count_unigrams 
 
 
 '''
@@ -57,7 +78,12 @@ Parameters: 2D list of strs
 Returns: list of strs
 '''
 def getStartWords(corpus):
-    return
+    l=[]
+    for i in corpus:
+        if i[0] not in l:
+            l.append(i[0]) 
+    return l
+ 
 
 
 '''
@@ -67,7 +93,14 @@ Parameters: 2D list of strs
 Returns: dict mapping strs to ints
 '''
 def countStartWords(corpus):
-    return
+    count_startword={}
+    l=[]
+    for i in corpus:
+        l.append(i[0])
+    for k in l:
+        if k not in count_startword:
+             count_startword[k]=l.count(k)
+    return count_startword 
 
 
 '''
@@ -77,7 +110,17 @@ Parameters: 2D list of strs
 Returns: dict mapping strs to (dicts mapping strs to ints)
 '''
 def countBigrams(corpus):
-    return
+    d={}
+    for p in range (len(corpus)):
+        for j in range (len(corpus[p])-1):
+            v = corpus[p][j]
+            v2 = corpus[p][j+1]
+            if v not in d:
+                d[v]={}
+            if v2 not in d[v]:
+                d[v][v2]=0
+            d[v][v2]+=1
+    return d
 
 
 ### WEEK 2 ###
@@ -89,7 +132,12 @@ Parameters: list of strs
 Returns: list of floats
 '''
 def buildUniformProbs(unigrams):
-    return
+    l=[]
+    length=len(unigrams)
+    for i in unigrams:
+        s=1/length
+        l.append(s)
+    return l
 
 
 '''
@@ -99,7 +147,13 @@ Parameters: list of strs ; dict mapping strs to ints ; int
 Returns: list of floats
 '''
 def buildUnigramProbs(unigrams, unigramCounts, totalCount):
-    return
+    l=[]
+    for i in unigrams:
+        for j in unigramCounts:
+            if i==j:
+                c=unigramCounts[j]/totalCount
+                l.append(c)
+    return l
 
 
 '''
