@@ -132,7 +132,12 @@ Parameters: list of strs
 Returns: list of floats
 '''
 def buildUniformProbs(unigrams):
-    return
+    l=[]
+    length=len(unigrams)
+    for i in unigrams:
+        s=1/length
+        l.append(s)
+    return l
 
 
 '''
