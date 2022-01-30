@@ -185,7 +185,13 @@ Parameters: int ; list of strs ; list of floats ; list of strs
 Returns: dict mapping strs to floats
 '''
 def getTopWords(count, words, probs, ignoreList):
-    return
+    d1=dict(zip(words,probs))                   #[("hi",0.4),("there",0.4),("hello",0.2)]
+    l=dict(sorted(d1.items(),key=lambda x:x[1],reverse=True))
+    d2={}
+    for key,values in l.items():
+        if key not in ignoreList and len(d2)<count:
+            d2[key]=values
+    return d2
 
 
 '''
@@ -196,6 +202,7 @@ Returns: str
 '''
 from random import choices
 def generateTextFromUnigrams(count, words, probs):
+    
     return
 
 
