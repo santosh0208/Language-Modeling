@@ -93,7 +93,14 @@ Parameters: 2D list of strs
 Returns: dict mapping strs to ints
 '''
 def countStartWords(corpus):
-    return
+    count_startword={}
+    l=[]
+    for i in corpus:
+        l.append(i[0])
+    for k in l:
+        if k not in count_startword:
+             count_startword[k]=l.count(k)
+    return count_startword 
 
 
 '''
