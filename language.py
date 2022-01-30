@@ -110,7 +110,17 @@ Parameters: 2D list of strs
 Returns: dict mapping strs to (dicts mapping strs to ints)
 '''
 def countBigrams(corpus):
-    return
+    d={}
+    for p in range (len(corpus)):
+        for j in range (len(corpus[p])-1):
+            v = corpus[p][j]
+            v2 = corpus[p][j+1]
+            if v not in d:
+                d[v]={}
+            if v2 not in d[v]:
+                d[v][v2]=0
+            d[v][v2]+=1
+    return d
 
 
 ### WEEK 2 ###
