@@ -339,6 +339,11 @@ Parameters: 2D list of strs ; str ; 2D list of strs ; str ; int ; str
 Returns: None
 '''
 def graphTopWordsSideBySide(corpus1, name1, corpus2, name2, numWords, title):
+    i=setupChartData(corpus1,corpus2,numWords)
+    x=i["topWords"]
+    v1=i["corpus1Probs"]
+    v2=i["corpus2Probs"]
+    sideBySideBarPlots(x, v1, v2, name1, name2, title)
     return
 
 
@@ -349,7 +354,12 @@ Parameters: 2D list of strs ; 2D list of strs ; int ; str
 Returns: None
 '''
 def graphTopWordsInScatterplot(corpus1, corpus2, numWords, title):
-    return
+    j=setupChartData(corpus1,corpus2,numWords)
+    l=j["topWords"]
+    x_scatterplot=j["corpus1Probs"]
+    y_scatterplot=j["corpus2Probs"]
+    scatterPlot(x_scatterplot,y_scatterplot, l, title)
+    return 
 
 
 ### WEEK 3 PROVIDED CODE ###
