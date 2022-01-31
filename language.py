@@ -294,7 +294,41 @@ Parameters: 2D list of strs ; 2D list of strs ; int
 Returns: dict mapping strs to (lists of values)
 '''
 def setupChartData(corpus1, corpus2, topWordCount):
-    return 
+    top_words=[]
+    corpus1_p=[]
+    corpus2_p=[]
+    d={}
+
+    count1=countUnigrams(corpus1)
+    words1=buildVocabulary(corpus1)
+    probs1=buildUnigramProbs(words1,count1,getCorpusLength(corpus1))
+    top1 =getTopWords(topWordCount, words1, probs1, ignore)
+    
+
+    count2=countUnigrams(corpus2)
+    words2=buildVocabulary(corpus2)
+    probs2=buildUnigramProbs(words2,count2,getCorpusLength(corpus2))
+    top2=getTopWords(topWordCount, words2, probs2, ignore)
+    
+    top_words=top_words+list(top1.keys())
+    for i in top2.keys():
+        if i not in top_words:
+            top_words.append(i)
+    for j in top_words:
+        if j in words1:
+            r=words1.index(j)
+            corpus1_p.append(probs1[r])
+        else:
+            corpus1_p.append(0)
+        if j in words2:
+            z=words2.index(j)
+            corpus2_p.append(probs2[z])
+        else:
+            corpus2_p.append(0)
+    d["topWords"]=top_words
+    d["corpus1Probs"]=corpus1_p
+    d["corpus2Probs"]=corpus2_p
+    return d
 
 
 
