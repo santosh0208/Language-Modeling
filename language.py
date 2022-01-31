@@ -264,6 +264,11 @@ Parameters: 2D list of strs
 Returns: None
 '''
 def graphTopStartWords(corpus):
+    c=countStartWords(corpus)
+    w=getStartWords(corpus)
+    p=buildUnigramProbs(w,c,getCorpusLength(corpus))
+    top=getTopWords(50, w, p, ignore)
+    barPlot(top, "The top start words")
     return
 
 
@@ -274,6 +279,11 @@ Parameters: 2D list of strs ; str
 Returns: None
 '''
 def graphTopNextWords(corpus, word):
+    cui=countUnigrams(corpus)
+    cbi=countBigrams(corpus)
+    p=buildBigramProbs(cui,cbi)
+    top=getTopWords(10, p[word]["words"], p[word]["probs"], ignore)
+    barPlot(top, "The top next words") 
     return
 
 
@@ -284,7 +294,8 @@ Parameters: 2D list of strs ; 2D list of strs ; int
 Returns: dict mapping strs to (lists of values)
 '''
 def setupChartData(corpus1, corpus2, topWordCount):
-    return
+    return 
+
 
 
 '''
@@ -388,15 +399,12 @@ if __name__ == "__main__":
     test.runWeek1()
 
     ## Uncomment these for Week 2 ##
-"""
+
     print("\n" + "#"*15 + " WEEK 2 TESTS " +  "#" * 16 + "\n")
     test.week2Tests()
     print("\n" + "#"*15 + " WEEK 2 OUTPUT " + "#" * 15 + "\n")
     test.runWeek2()
-"""
 
-    ## Uncomment these for Week 3 ##
-"""
+    ## Uncomment these for Week 3 ## 
     print("\n" + "#"*15 + " WEEK 3 OUTPUT " + "#" * 15 + "\n")
     test.runWeek3()
-"""
